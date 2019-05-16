@@ -1,0 +1,25 @@
+version: "2"
+services:
+  api:
+    build: api
+    ports:
+      - "6565:6565"
+  proxy:
+    build: proxy
+    ports:
+      - "8081:8080"
+      - "9901:9901"
+    links:
+      - api
+  web:
+    build: web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./proxy.conf.template:/etc/nginx/conf.d/proxy.conf.template
+    environment:
+      - GRPC_WEB_HOST=proxy
+      - GRPC_WEB_PORT=8080
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/proxy.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    links:
+      - proxy

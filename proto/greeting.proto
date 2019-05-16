@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package kui.test;
+
+service GreetingService {
+  rpc greet(GreetRequest) returns (GreetResponse) {}
+}
+
+message GreetRequest {
+}
+
+message GreetResponse {
+  string message = 1;
+}

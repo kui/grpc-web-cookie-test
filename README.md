@@ -89,6 +89,6 @@ document.cookie = 'hoge=fuga;path=/;'
 
 "greet" ボタンを押す
 
-開発者ツールでリクエストを確認（失敗する）
+開発者ツールでリクエストを確認
 
 docker-compose の端末で上記のようにメタデータすべてがログ出力される
